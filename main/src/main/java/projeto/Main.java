@@ -12,7 +12,6 @@ public class Main {
                 "      _______\n  ---'   ____)____\n            ______)\n            _______)\n           _______)\n  ---.__________)",
                 "      _______\n  ---'   ____)____\n            ______)\n         __________)\n        (____)\n  ---.__(___)"
         };
-        int[][] placar = {{0, 0, 0}, {0, 0, 0}};
         String jokenpo =    "     ██  ██████  ██   ██ ███████ ███    ██ ██████   ██████  \n" +
                             "     ██ ██    ██ ██  ██  ██      ████   ██ ██   ██ ██    ██ \n" +
                             "     ██ ██    ██ █████   █████   ██ ██  ██ ██████  ██    ██ \n" +
@@ -20,12 +19,18 @@ public class Main {
                             " █████   ██████  ██   ██ ███████ ██   ████ ██       ██████  \n" +
                             "                                                            \n" +
                             "                                                            ";
+        String printScore = (" ████  ███   ███  ████  █████ \r\n"
+                            + "█     █     █   █ █   █ █     \r\n"
+                            + " ███  █     █   █ ████  ████  \r\n"
+                            + "    █ █     █   █ █  █  █     \r\n"
+                            + "████   ███   ███  █   █ █████   \n"
+                            + "                                \n");
         boolean game = true;
         int escolhaJogador;
         int escolhaMaquina;
         int continuar;
         int i;
-        
+        boolean entradaValida;
         // Score 
         // linha[0] -> Jogador (Vitórias[0], Empates[1], Derrotas[2])
         // linha[1] -> CPU     (Vitórias[0], Empates[1], Derrotas[2])
@@ -36,16 +41,26 @@ public class Main {
         System.out.println("Seja bem vindo!");
 
         do{
-            // Escolha do jogador
-            System.out.print("\nFaça a sua escolha para jogar digite o número que representa sua jogada: pedra(0), papel(1) ou tesoura(2): ");
-            escolhaJogador = sc.nextInt();
+            // validando entrada do jogador
+            do {
+                entradaValida = false;
+                // Escolha do jogador
+                System.out.print("\nFaça a sua escolha para jogar digite o número que representa sua jogada: pedra(0), papel(1) ou tesoura(2): ");
+                escolhaJogador = sc.nextInt();
+                if(escolhaJogador >= 0 && escolhaJogador <= 2){
+                    entradaValida = true;
+                }
+                else{
+                    System.out.println("Entrada invalida, tente novamente!");
+                }
+            }while(!entradaValida);
             // Escolha da máquina
             escolhaMaquina = rd.nextInt(3);
             // Retornando ao jogador as escolhas
             System.out.println("Você jogou: \n" + arte[escolhaJogador] + "\n");
             System.out.println("A máquina jogou: \n" + arte[escolhaMaquina] + "\n");
-            // Determinar o resultado final
 
+            // Determinar o resultado final e a tabela dos resultados
             if(escolhaJogador == escolhaMaquina){
                 System.out.println("Empate!");
                 score[0][1]++;
@@ -90,9 +105,17 @@ public class Main {
                     score[1][2]++;
                 }
             }
-
-            System.out.print("Essa rodada terminou, gostaria de continuar? sim(1) ou não(2): ");
-            continuar = sc.nextInt();
+            do {
+                entradaValida = false;
+                System.out.print("Essa rodada terminou, gostaria de continuar? sim(1) ou não(2): ");
+                continuar = sc.nextInt();
+                if(continuar >= 1 && continuar <= 2){
+                    entradaValida = true;
+                }
+                else{
+                    System.out.println("Opção invalida! Digite uma opção valida.");
+                }
+            }while(!entradaValida);
             if(continuar == 2){
                 game = false;
             }
@@ -102,13 +125,6 @@ public class Main {
         System.out.println();
         
         // Print do Score
-        String printScore = (" ████  ███   ███  ████  █████ \r\n"
-        		           + "█     █     █   █ █   █ █     \r\n"
-        		           + " ███  █     █   █ ████  ████  \r\n"
-        		           + "    █ █     █   █ █  █  █     \r\n"
-        		           + "████   ███   ███  █   █ █████   \n"
-        		           + "                                \n");
-        
         System.out.println(printScore);
         
         for (int j = 0; j < score.length; j++) {
