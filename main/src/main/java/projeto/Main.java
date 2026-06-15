@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     static void main() {
-        Scanner sc = new Scanner(System.in);
+    	Scanner sc = new Scanner(System.in);
         Random rd = new Random();
         String[] arte = {
                 "      _______\n  ---'   ____)\n        (_____)\n        (_____)\n        (____)\n  ---.__(___)",
@@ -20,16 +20,15 @@ public class Main {
                             "                                                            \n" +
                             "                                                            ";
         String printScore = (" ████  ███   ███  ████  █████ \r\n"
-                            + "█     █     █   █ █   █ █     \r\n"
-                            + " ███  █     █   █ ████  ████  \r\n"
-                            + "    █ █     █   █ █  █  █     \r\n"
-                            + "████   ███   ███  █   █ █████   \n"
-                            + "                                \n");
+                           + "█     █     █   █ █   █ █     \r\n"
+                           + " ███  █     █   █ ████  ████  \r\n"
+                           + "    █ █     █   █ █  █  █     \r\n"
+                           + "████   ███   ███  █   █ █████   \n"
+                           + "                                \n");
         boolean game = true;
         int escolhaJogador;
         int escolhaMaquina;
         int continuar;
-        int i;
         boolean entradaValida;
         // Score 
         // linha[0] -> Jogador (Vitórias[0], Empates[1], Derrotas[2])
@@ -156,5 +155,6 @@ public class Main {
         	System.out.println();
         }
         
+        sc.close(); 
     }
 }
